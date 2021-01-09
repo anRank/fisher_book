@@ -26,6 +26,7 @@ def login():
     if request.method == 'POST' and form.validate():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.check_password(form.password.data):
+            # 通过login_user登录
             login_user(user, remember=True)
             next = request.args.get('next')
             if not next or not next.startswith('/'):
@@ -77,6 +78,7 @@ def change_password():
     return render_template('auth/change_password.html', form=form)
 
 
+# 注销，使用logout_user()函数注销
 @web.route('/logout')
 def logout():
     logout_user()

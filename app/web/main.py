@@ -12,6 +12,7 @@ def index():
     return render_template('index.html', recent=books)
 
 
+# 使用装饰login_required器装饰需要用户登录的视图
 @web.route('/personal')
 @login_required
 def personal_center():
