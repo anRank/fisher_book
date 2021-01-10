@@ -101,6 +101,7 @@ class User(UserMixin, Base):
         )
 
 
+# 需要提供一个user_loader回调。此回调用于从会话中存储的用户ID重新加载用户对象。它应该unicode带有用户的ID，并返回相应的用户对象:
 @login_manager.user_loader
 def get_user(uid):
     return User.query.get(int(uid))
